@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
@@ -47,13 +48,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-
-            // Foreign keys
-            $table->foreign('tenant_id')
-                ->references('id')
-                ->on('tenants')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
 
             // Indexes
             $table->index('tenant_id');
